@@ -25,6 +25,43 @@ public class Board {
         boardLine();
     }
 
+    private void boardLine() {
+        for (int x = 0; x < 3 * 10 + 1;x++) {
+            System.out.print("-");
+        }
+        System.out.println();
+    }
+}
+
+
+class Solver {
+    private int[][] board;
+
+    public void setBoard (int[][] board) {
+        this.board = board;
+    }
+
+
+    public boolean solveBoard() {
+        int pos[] = findEmpty(this.board);
+        int rows = pos[0];
+        int columns = pos[1];
+        if (pos[0] == -1) {
+            return true;
+        }
+        for (int num = 1; num < 10  ;num++) {
+            this.board[rows][columns] = num;
+            boolean result = this.validateBoard(rows, columns, this.board);
+            if (result) {
+                if (solveBoard()) {
+                    return true;
+                }
+            }
+            this.board[rows][columns] = 0;
+        }
+        return false;
+    }
+
     private boolean validateBoard (int x, int y, int board[][]) {
         String temp = "";
         int count = 0, idx = 0;
@@ -38,33 +75,6 @@ public class Board {
             idx++;  count++;
         }
         return count == 3;
-    }
-
-    private void boardLine() {
-        for (int x = 0; x < 3 * 10 + 1;x++) {
-            System.out.print("-");
-        }
-        System.out.println();
-    }
-
-    public boolean solveBoard(int[][] board) {
-        int pos[] = findEmpty(board);
-        int rows = pos[0];
-        int columns = pos[1];
-        if (pos[0] == -1) {
-            return true;
-        }
-        for (int num = 1; num < 10  ;num++) {
-            board[rows][columns] = num;
-            boolean result = this.validateBoard(rows, columns, board);
-            if (result) {
-                if (solveBoard(board)) {
-                    return true;
-                }
-            }
-            board[rows][columns] = 0;
-        }
-        return false;
     }
 
     private int[] findEmpty (int[][] board) {

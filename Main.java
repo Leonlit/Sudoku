@@ -1,19 +1,21 @@
 class Main {
     public static void main (String args[]){
         int[][] sampleBoard = {
-            {3, 0, 6, 5, 0, 8, 4, 0, 0}, 
-            {5, 2, 0, 0, 0, 0, 0, 0, 0}, 
-            {0, 8, 7, 0, 0, 0, 0, 3, 1}, 
-            {0, 0, 3, 0, 1, 0, 0, 8, 0}, 
-            {9, 0, 0, 8, 6, 3, 0, 0, 5}, 
-            {0, 5, 0, 0, 9, 0, 6, 0, 0}, 
-            {1, 3, 0, 0, 0, 0, 2, 5, 0}, 
-            {0, 0, 0, 0, 0, 0, 0, 7, 4}, 
-            {0, 0, 5, 2, 0, 6, 3, 0, 0} 
+            {0, 0, 0, 0, 0, 0, 6, 8, 0}, 
+            {0, 0, 0, 0, 7, 3, 0, 0, 9}, 
+            {3, 0, 9, 0, 0, 0, 0, 4, 5}, 
+            {4, 9, 0, 0, 0, 0, 0, 0, 0}, 
+            {8, 0, 3, 0, 5, 0, 9, 0, 2}, 
+            {0, 0, 0, 0, 0, 0, 0, 3, 6}, 
+            {9, 6, 0, 0, 0, 0, 3, 0, 8}, 
+            {7, 0, 0, 6, 8, 0, 0, 0, 0}, 
+            {0, 2, 8, 0, 0, 0, 0, 0, 0}
         };
-        Board test = new Board(sampleBoard);
-        test.printBoard();
-        test.solveBoard(test.getBoard());
-        test.printBoard();
+        Board testBoard = new Board(sampleBoard);
+        Solver solver = new Solver();
+        solver.setBoard(testBoard.getBoard());
+        testBoard.printBoard();
+        solver.solveBoard();
+        testBoard.printBoard();
     }
 }
